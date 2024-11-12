@@ -6,6 +6,8 @@ import userRoutes from '@routes/userRoutes';
 import express from 'express';
 import 'module-alias/register';
 
+import 'module-alias/register';
+
 const app = express();
 let server: any;
 let isServerRunning = false;
