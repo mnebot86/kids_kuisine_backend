@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register src/server.ts",
-		"build": "tsc",
+		"build": "npm install --include=dev && tsc",
 		"start": "node dist/server.js",
 		"test": "cross-env NODE_ENV=test PORT=5002 jest --detectOpenHandles",
 		"lint": "eslint .",
@@ -31,6 +31,7 @@
 		"helmet": "^8.0.0",
 		"http-status-codes": "^2.3.0",
 		"jsonwebtoken": "^9.0.2",
+		"module-alias": "^2.2.3",
 		"mongoose": "^8.8.1",
 		"morgan": "^1.10.0",
 		"passport": "^0.7.0",
@@ -70,5 +71,16 @@
 		"ts-node-dev": "^2.0.0",
 		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.6.3"
+	},
+	"_moduleAliases": {
+		"@config": "dist/config",
+		"@controllers": "dist/controllers",
+		"@middleware": "dist/middleware",
+		"@models": "dist/models",
+		"@routes": "dist/routes",
+		"@services": "dist/services",
+		"@utils": "dist/utils",
+		"@types": "dist/types",
+		"@server": "dist/server"
 	}
 }
