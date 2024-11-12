@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register src/server.ts",
-		"build": "tsc",
+		"build": "tsc --build && npm install --legacy-peers-deps",
 		"start": "node dist/server.js",
 		"test": "jest --detectOpenHandles",
 		"lint": "eslint .",
