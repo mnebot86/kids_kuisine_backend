@@ -9,6 +9,12 @@ const app = express();
 
 app.use(express.json());
 app.use(passport.initialize());
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+	res.status(200).json({ status: 'ok', message: 'Server is healthy' });
+});
+
 app.use('/api/v1', userRoutes);
 app.use(errorHandler);
 
