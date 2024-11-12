@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register src/server.ts",
 		"build": "npm install --include=dev && tsc",
-		"start": "node dist/server.js",
+		"start": "node -r module-alias/register dist/server.js",
 		"test": "cross-env NODE_ENV=test PORT=5002 jest --detectOpenHandles",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
