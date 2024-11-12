@@ -1,8 +1,7 @@
+import User from '@models/user';
+import { app, startServer } from '@server';
 import mongoose from 'mongoose';
 import request from 'supertest';
-
-import User from '../../src/models/user';
-import { app, startServer } from '../../src/server';
 
 let server;
 
@@ -16,7 +15,8 @@ describe('User Controller', () => {
 		await User.deleteOne({ email: 'testuser@example.com' });
 
 		await mongoose.connection.close();
-		server.close();
+
+		if (server) await server.close();
 	});
 
 	it('should register a user with credentials', async () => {

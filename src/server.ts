@@ -6,6 +6,8 @@ import userRoutes from '@routes/userRoutes';
 import express from 'express';
 
 const app = express();
+let server: any;
+let isServerRunning = false;
 
 app.use(express.json());
 app.use(passport.initialize());
@@ -19,14 +21,23 @@ app.use('/api/v1', userRoutes);
 app.use(errorHandler);
 
 const startServer = async () => {
+	if (isServerRunning) {
+		console.log('Server is already running.');
+
+		return server;
+	}
+
 	await connectDB();
-	const server = app.listen(config.port, () => {
+	server = app.listen(config.port, () => {
+		isServerRunning = true;
 		console.log(`Server running on port ${config.port}`);
 	});
 
 	return server;
 };
 
-startServer();
+if (process.env.NODE_ENV !== 'test') {
+	startServer();
+}
 
 export { app, startServer };

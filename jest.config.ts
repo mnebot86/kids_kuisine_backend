@@ -4,7 +4,7 @@ const config: Config = {
 	preset: 'ts-jest',
 	testEnvironment: 'node',
 	rootDir: './',
-	testMatch: ['<rootDir>/tests/controllers/*.test.ts'],
+	testMatch: ['**/tests/**/*.test.ts'],
 	moduleFileExtensions: ['ts', 'js', 'json', 'node'],
 	moduleNameMapper: {
 		'^@config/(.*)$': '<rootDir>/src/config/$1',
@@ -15,8 +15,10 @@ const config: Config = {
 		'^@services/(.*)$': '<rootDir>/src/services/$1',
 		'^@utils/(.*)$': '<rootDir>/src/utils/$1',
 		'^@types/(.*)$': '<rootDir>/src/types/$1',
+		'^@server$': '<rootDir>/src/server.ts',
 	},
 	setupFiles: ['dotenv/config'],
+	testPathIgnorePatterns: ['/node_modules/', '/dist/'],
 };
 
 export default config;
