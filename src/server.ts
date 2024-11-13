@@ -4,7 +4,6 @@ import passport from '@config/passport';
 import errorHandler from '@middleware/errorHandler';
 import userRoutes from '@routes/userRoutes';
 import express from 'express';
-import 'module-alias/register';
 
 import 'module-alias/register';
 

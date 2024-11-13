@@ -1,8 +1,8 @@
-name: Test
+name: Tests
 
 on:
     pull_request:
-        branches: [main]
+        branches: [dev]
 
 jobs:
     test:
@@ -13,12 +13,21 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Set up Node.js
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
-                  node-version: '16'
+                  node-version: '18'
+                  cache: 'npm'
 
             - name: Install dependencies
               run: npm install
 
             - name: Run tests
               run: npm test
+              env:
+                  NODE_ENV: test
+                  PORT: 5002
+                  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+                  MONGO_URI: ${{ secrets.MONGO_URI }}
+
+        environment:
+            name: Dev
